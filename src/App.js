@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button } from './components/Button';
 import { Todo } from './components/Todo';
 import './App.css';
+import 'antd/dist/antd.css';
 
 export default class App extends Component {
   state = {
@@ -21,7 +22,7 @@ export default class App extends Component {
   }
 
   completeTodo = (todo) => {
-    this.state.todos.filter(it => it == todo)[0].completed = !todo.completed
+    this.state.todos.filter(it => it === todo)[0].completed = !todo.completed
     this.setState({
       todos: this.state.todos
     })
@@ -48,28 +49,25 @@ export default class App extends Component {
     return (
       <div className="App">
         <header>
-          <span role="img" aria-label="">🧠</span>
-          <h1>Reactodo</h1>
-          <span role="img" aria-label="">🤖</span>
+          <h1>CSS3 To-Do List</h1>
         </header>
-        <div className="container">
-          <div className="form-group">
-            <input
-              type="text"
-              className="todo-input"
-              onChange={(e) => this.setState({ text: e.target.value })}
-              value={this.state.text}
-            />
-            <Button
-              className="btn"
-              action={() => this.addTodo()}
-            >
-              Ajouter une tâche
-            </Button>
-          </div>
+        <div>
 
-          {this.renderTodos()}
+          <input
+            type="text"
+            className="todo-input"
+            onChange={(e) => this.setState({ text: e.target.value })}
+            value={this.state.text}
+          />
+          <Button
+            className="btn"
+            action={() => this.addTodo()}
+          >
+            Ajouter une tâche
+            </Button>
         </div>
+
+        {this.renderTodos()}
       </div>
     );
   }
