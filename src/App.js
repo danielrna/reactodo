@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Button } from './components/Button';
 import { Todo } from './components/Todo';
 import './App.css';
 import 'antd/dist/antd.css';
-
+import { Row, Col, Button, Divider, Typography } from 'antd'
+const { Text } = Typography;
 export default class App extends Component {
   state = {
     text: "",
@@ -51,23 +51,40 @@ export default class App extends Component {
         <header>
           <h1>CSS3 To-Do List</h1>
         </header>
-        <div>
+        <Row>
+          <Col span={6} />
+          <Col span={5} offset={1} >
+            <input
+              type="text"
+              className="todo-input"
+              onChange={(e) => this.setState({ text: e.target.value })}
+              value={this.state.text}
+            />
+          </Col>
+          
+          <Col>
 
-          <input
-            type="text"
-            className="todo-input"
-            onChange={(e) => this.setState({ text: e.target.value })}
-            value={this.state.text}
-          />
-          <Button
-            className="btn"
-            action={() => this.addTodo()}
-          >
-            Ajouter une tâche
+            <Button
+              className="btn"
+              disabled={this.state.text == ""}
+              onClick={() => this.addTodo()}
+            >
+              Ajouter une tâche
             </Button>
-        </div>
+          </Col>
+        </Row>
 
-        {this.renderTodos()}
+        <br></br>
+        <Divider />
+        <Row>
+          <Col span={8}>
+          </Col>
+          <Col span={8}>
+            {this.renderTodos()}
+          </Col>
+          <Col span={8}>
+          </Col>
+        </Row>
       </div>
     );
   }

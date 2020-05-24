@@ -1,26 +1,29 @@
 import React from 'react'
 import DeleteOutlined from '@ant-design/icons/DeleteOutlined';
-import { Row, Col } from 'antd'
+import { Row, Col, Button, Divider, Typography } from 'antd'
+const { Text } = Typography;
 
 export const Todo = ({ todo, checkboxAction, buttonAction }) => {
     return (
         <Row gutter={[16, 16]}>
-            <Col span={8} >
+            <Col span={6} />
+            <Col span={2} >
                 <input id={todo.id}
                     type="checkbox"
                     checked={todo.completed}
-                    onChange={checkboxAction} />
+                    onChange={checkboxAction}
+                />
             </Col>
             <Col span={8} >
-                <label>
-                    <h2>{todo.text}
-                        <span>subtext</span>
-                    </h2>
-                </label>
+                <Text strong>{todo.text}</Text>
             </Col>
             <Col span={8} >
-                <DeleteOutlined onClick={buttonAction}></DeleteOutlined>
+                <Button onClick={buttonAction}>
+
+                    <DeleteOutlined ></DeleteOutlined>
+                </Button>
             </Col>
+            <Divider />
         </Row>
 
     )
